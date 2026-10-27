@@ -1,67 +1,123 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor De Finanzas Personales</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
 
-    <div>
-        <h1>Gestor De Finanzas Personales</h1>
+<body
+    class="flex flex-col w-full bg-gray-950 text-gray-300 text-base items-center px-(--page-padding) py-6 [--page-padding:--spacing(4)] sm:[--page-padding:--spacing(8)] min-h-screen">
 
-        <!-- Esto Es El Panel De Balance Global -->
-        <div>
-            <div>
-                <h3>Ingresos Totales</h3>
-                <p id="total-ingresos">$0.00</p>
+    <!-- parent -->
+    <div class="w-full max-w-4xl space-y-12">
+
+        <!-- Header / Título -->
+        <div class="w-full">
+            <h1 class="w-full text-gray-100 font-bold text-3xl md:text-4xl capitalize tracking-tight">Gestor de Finanzas
+            </h1>
+        </div>
+
+        <!-- Panel de Balance Global (Tarjetas) -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-sm">
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Ingresos Totales</h3>
+                <p id="total-ingresos" class="text-2xl font-extrabold text-emerald-400">$0.00</p>
             </div>
-            <div>
-                <h3>Gastos Totales</h3>
-                <p id="total-gastos">$0.00</p>
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-sm">
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Gastos Totales</h3>
+                <p id="total-gastos" class="text-2xl font-extrabold text-rose-400">$0.00</p>
             </div>
-            <div>
-                <h3>Balance Neto</h3>
-                <p id="balance-neto">$0.00</p>
+            <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-sm">
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Balance Neto</h3>
+                <p id="balance-neto" class="text-2xl font-extrabold text-blue-400">$0.00</p>
             </div>
         </div>
 
-        <!-- Esto Es La Estructura Del Formulario Del Registro -->
-         
-        <form id="form-transaccion">
-            <input type="text" id="descripcion" placeholder="Descripción del movimiento" required>
-            <input type="number" id="monto" placeholder="Monto" step="0.01" required>
-            <select id="tipo" required>
-                <option value="">Seleccione Tipo</option>
-                <option value="ingreso">Ingreso</option>
-                <option value="gasto">Gasto</option>
-            </select>
-            <select id="categoria" required>
-                <option value="">Seleccione Categoría</option>
-                <option value="Sueldo">Sueldo</option>
-                <option value="Comida">Comida</option>
-                <option value="Transporte">Transporte</option>
-                <option value="Otros">Otros</option>
-            </select>
-            <button type="submit">Registrar Transacción</button>
-        </form>
+        <!-- Formulario de Registro -->
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-sm">
+            <h2 class="text-lg font-bold text-gray-100 mb-4">Registrar Movimiento</h2>
+            <form id="form-transaccion" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="sm:col-span-2">
+                    <label class="block text-gray-400 font-medium mb-1.5 text-sm" for="descripcion">Descripción</label>
+                    <input
+                        class="w-full bg-gray-950 border border-gray-700/60 rounded-lg py-2.5 px-3.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        type="text" id="descripcion" placeholder="Descripción del movimiento" required>
+                </div>
+                <div>
+                    <label class="block text-gray-400 font-medium mb-1.5 text-sm" for="monto">Monto</label>
+                    <input
+                        class="w-full bg-gray-950 border border-gray-700/60 rounded-lg py-2.5 px-3.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        type="number" id="monto" placeholder="0.00" step="0.01" required>
+                </div>
+                <div>
+                    <label class="block text-gray-400 font-medium mb-1.5 text-sm" for="tipo">Tipo</label>
+                    <select
+                        class="w-full bg-gray-950 border border-gray-700/60 rounded-lg py-2.5 px-3.5 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="tipo" required>
+                        <option value="" class="bg-gray-950">Seleccione Tipo</option>
+                        <option value="ingreso" class="bg-gray-950">Ingreso</option>
+                        <option value="gasto" class="bg-gray-950">Gasto</option>
+                    </select>
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="block text-gray-400 font-medium mb-1.5 text-sm" for="categoria">Categoría</label>
+                    <select
+                        class="w-full bg-gray-950 border border-gray-700/60 rounded-lg py-2.5 px-3.5 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="categoria" required>
+                        <option value="" class="bg-gray-950">Seleccione Categoría</option>
+                        <option value="Sueldo" class="bg-gray-950">Sueldo</option>
+                        <option value="Comida" class="bg-gray-950">Comida</option>
+                        <option value="Transporte" class="bg-gray-950">Transporte</option>
+                        <option value="Otros" class="bg-gray-950">Otros</option>
+                    </select>
+                </div>
+                <div class="sm:col-span-2 pt-2">
+                    <button type="submit"
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-4 rounded-lg transition shadow-sm cursor-pointer">Registrar
+                        Transacción</button>
+                </div>
+            </form>
+        </div>
 
-        <h2>Historial de Movimientos</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Descripción</th>
-                    <th>Categoría</th>
-                    <th>Tipo</th>
-                    <th>Monto</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="tabla-movimientos">
-            </tbody>
-        </table>
+        <!-- Table Sec (Historial de Movimientos) -->
+        <div class="w-full">
+            <h2 class="text-xl font-bold text-gray-100 mb-4">Historial de Movimientos</h2>
+            <div class="-mx-(--page-padding) flex overflow-x-auto">
+                <div class="px-(--page-padding) grow w-full">
+                    <table class="min-w-full whitespace-nowrap text-left text-gray-400">
+                        <thead class="text-gray-300 border-b border-gray-700/50">
+                            <tr
+                                class="[&_th]:p-4 [&_th:first-child]:pl-1 [&_th:last-child]:pr-1 [&_th:last-child]:text-right">
+                                <th>Descripción</th>
+                                <th>Categoría</th>
+                                <th>Tipo</th>
+                                <th>Monto</th>
+                                <th class="text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-movimientos" class="divide-gray-700/50 divide-y">
+                            <tr>
+                                <td colspan="6" class="px-4 py-8 text-center text-gray-500">
+                                    No hay carga financiera registrada.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 
+    <!-- Inyector del módulo JavaScript -->
+    <script type="module" src="app.js"></script>
+</body>
+
+</html>
 <!-- Esto Es El Inyector Del Modulo "app.js" -->
 
     <script type="module" src="app.js"></script>

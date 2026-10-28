@@ -12,16 +12,18 @@
 <body
     class="flex flex-col w-full bg-gray-950 text-gray-300 text-base items-center px-(--page-padding) py-6 [--page-padding:--spacing(4)] sm:[--page-padding:--spacing(8)] min-h-screen">
 
-    <!-- Parent -->
+    <!-- parent -->
     <div class="w-full max-w-4xl space-y-12">
 
         <!-- Header / Título -->
-        <div class="w-full">
-            <h1 class="w-full text-gray-100 font-bold text-3xl md:text-4xl capitalize tracking-tight">Gestor de Finanzas
-            </h1>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-sm">
+            <header class="container mx-auto flex justify-between items-center">
+                <h1 class="w-full text-gray-100 font-bold text-4xl md:text-4xl">Gestor de Finanzas</h1>
+                <p class="w-full text-gray-100 font-bold text-1xl md:text-1xl">ISSC-Hackathon</p>
+            </header>
         </div>
 
-        <!-- Panel De Balance Global (Tarjetas) -->
+        <!-- Panel de Balance Global (Tarjetas) -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-sm">
                 <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Ingresos Totales</h3>
@@ -37,9 +39,10 @@
             </div>
         </div>
 
-        <!-- Formulario De Registro -->
+        <!-- Formulario de Registro -->
         <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-sm">
             <h2 class="text-lg font-bold text-gray-100 mb-4">Registrar Movimiento</h2>
+            
             <form id="form-transaccion" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="sm:col-span-2">
                     <label class="block text-gray-400 font-medium mb-1.5 text-sm" for="descripcion">Descripción</label>
@@ -56,9 +59,8 @@
                 <div>
                     <label class="block text-gray-400 font-medium mb-1.5 text-sm" for="tipo">Tipo</label>
                     <select
-                        class="w-full bg-gray-950 border border-gray-700/60 rounded-lg py-2.5 px-3.5 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        id="tipo" required>
-                        <option value="" class="bg-gray-950">Seleccione Tipo</option>
+                        class="w-full bg-gray-950 border border-gray-700/60 rounded-lg py-2.5 px-3.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="tipo" placeholder="Seleccione Tipo" required>
                         <option value="ingreso" class="bg-gray-950">Ingreso</option>
                         <option value="gasto" class="bg-gray-950">Gasto</option>
                     </select>
@@ -68,35 +70,36 @@
                     <select
                         class="w-full bg-gray-950 border border-gray-700/60 rounded-lg py-2.5 px-3.5 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         id="categoria" required>
-                        <option value="" class="bg-gray-950">Seleccione Categoría</option>
                         <option value="Sueldo" class="bg-gray-950">Sueldo</option>
                         <option value="Comida" class="bg-gray-950">Comida</option>
                         <option value="Transporte" class="bg-gray-950">Transporte</option>
+                        <option value="Entretenimiento" class="bg-gray-950">Entretenimiento</option>    
+                        <option value="Salud" class="bg-gray-950">Salud</option>
+                        <option value="Educación" class="bg-gray-950">Educación</option>
                         <option value="Otros" class="bg-gray-950">Otros</option>
                     </select>
                 </div>
                 <div class="sm:col-span-2 pt-2">
                     <button type="submit"
-                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-4 rounded-lg transition shadow-sm cursor-pointer">Registrar
+                        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-1 rounded-lg transition shadow-sm cursor-pointer">Registrar
                         Transacción</button>
                 </div>
             </form>
         </div>
-
-        <!-- Table Sec (Historial De Movimientos) -->
-        <div class="w-full">
+        <!-- Table Sec (Historial de Movimientos) -->
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-sm">
             <h2 class="text-xl font-bold text-gray-100 mb-4">Historial de Movimientos</h2>
             <div class="-mx-(--page-padding) flex overflow-x-auto">
                 <div class="px-(--page-padding) grow w-full">
                     <table class="min-w-full whitespace-nowrap text-left text-gray-400">
                         <thead class="text-gray-300 border-b border-gray-700/50">
                             <tr>
-                                <th>ID</th>
-                                <th>Descripción</th>
-                                <th>Categoría</th>
-                                <th>Tipo</th>
-                                <th>Monto</th>
-                                <th class="text-right">Acciones</th>
+                                <th class="p-4 pl-1 font-semibold">ID</th>
+                                <th class="p-4 pl-1 font-semibold">Descripción</th>
+                                <th class="p-4 pl-1 font-semibold">Categoría</th>
+                                <th class="p-4 pl-1 font-semibold">Tipo</th>
+                                <th class="p-4 pl-1 font-semibold">Monto</th>
+                                <th class="p-4 pl-1 font-semibold">Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="tabla-movimientos" class="divide-gray-700/50 divide-y">
@@ -110,16 +113,9 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-    <!-- Inyector Del Módulo JavaScript -->
+    <!-- Inyector del módulo JavaScript -->
     <script type="module" src="app.js"></script>
 </body>
 
-</html>
-<!-- Esto Es El Inyector Del Modulo "app.js" -->
-
-    <script type="module" src="app.js"></script>
-</body>
 </html>

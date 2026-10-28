@@ -16,9 +16,11 @@
     <div class="w-full max-w-4xl space-y-12">
 
         <!-- Header / Título -->
-        <div class="w-full">
-            <h1 class="w-full text-gray-100 font-bold text-3xl md:text-4xl capitalize tracking-tight">Gestor de Finanzas
-            </h1>
+        <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-sm">
+            <header class="container mx-auto flex justify-between items-center">
+                <h1 class="w-full text-gray-100 font-bold text-4xl md:text-4xl">Gestor de Finanzas</h1>
+                <p class="w-full text-gray-100 font-bold text-1xl md:text-1xl">ISSC-Hackathon</p>
+            </header>
         </div>
 
         <!-- Panel de Balance Global (Tarjetas) -->
@@ -40,6 +42,7 @@
         <!-- Formulario de Registro -->
         <div class="bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-sm">
             <h2 class="text-lg font-bold text-gray-100 mb-4">Registrar Movimiento</h2>
+            
             <form id="form-transaccion" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div class="sm:col-span-2">
                     <label class="block text-gray-400 font-medium mb-1.5 text-sm" for="descripcion">Descripción</label>
@@ -56,8 +59,8 @@
                 <div>
                     <label class="block text-gray-400 font-medium mb-1.5 text-sm" for="tipo">Tipo</label>
                     <select
-                        class="w-full bg-gray-950 border border-gray-700/60 rounded-lg py-2.5 px-3.5 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        id="tipo" required>
+                        class="w-full bg-gray-950 border border-gray-700/60 rounded-lg py-2.5 px-3.5 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        id="tipo" placeholder="Seleccione Tipo" required>
                         <option value="" class="bg-gray-950">Seleccione Tipo</option>
                         <option value="ingreso" class="bg-gray-950">Ingreso</option>
                         <option value="gasto" class="bg-gray-950">Gasto</option>
@@ -82,7 +85,6 @@
                 </div>
             </form>
         </div>
-
         <!-- Table Sec (Historial de Movimientos) -->
         <div class="w-full">
             <h2 class="text-xl font-bold text-gray-100 mb-4">Historial de Movimientos</h2>
@@ -90,14 +92,13 @@
                 <div class="px-(--page-padding) grow w-full">
                     <table class="min-w-full whitespace-nowrap text-left text-gray-400">
                         <thead class="text-gray-300 border-b border-gray-700/50">
-                            <tr
-                                class="[&_th]:p-4 [&_th:first-child]:pl-1 [&_th:last-child]:pr-1 [&_th:last-child]:text-right">
+                            <tr>
                                 <th>ID</th>
                                 <th>Descripción</th>
                                 <th>Categoría</th>
                                 <th>Tipo</th>
                                 <th>Monto</th>
-                                <th class="text-right">Acciones</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="tabla-movimientos" class="divide-gray-700/50 divide-y">
@@ -111,16 +112,9 @@
                 </div>
             </div>
         </div>
-
     </div>
-
     <!-- Inyector del módulo JavaScript -->
     <script type="module" src="app.js"></script>
 </body>
 
-</html>
-<!-- Esto Es El Inyector Del Modulo "app.js" -->
-
-    <script type="module" src="app.js"></script>
-</body>
 </html>

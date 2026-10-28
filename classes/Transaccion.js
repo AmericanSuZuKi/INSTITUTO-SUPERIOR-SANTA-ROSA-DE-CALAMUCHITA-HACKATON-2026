@@ -1,23 +1,37 @@
 export class Transaccion {
-    // Array estático compartido para almacenar todo el historial de transacciones creadas
-    static historial = [];
+    static historial = JSON.parse(localStorage.getItem('historial')) || [];
 
-    // El constructor inicializa las propiedades de cada nueva transacción
     constructor(tipo, descripcion, monto, categoria) {
-        this.id = Date.now(); // Genera un ID único numérico basado en la marca de tiempo actual
-        this.tipo = tipo;     // Define si es 'ingreso' o 'gasto'
-        this.descripcion = descripcion; // Texto descriptivo del movimiento
-        this.monto = parseFloat(monto); // Convierte el monto ingresado a un número decimal
-        this.categoria = categoria; // Categoría asignada (ej. Sueldo, Comida)
+        this.id = Date.now();
+        this.tipo = tipo;     
+        this.descripcion = descripcion;
+        this.monto = parseFloat(monto);
+        this.categoria = categoria;
     }
 
-    // Método estático para agregar una nueva instancia de transacción al array del historial
+    static guardarEnStorage() {
+        localStorage.setItem('historial', JSON.stringify(Transaccion.historial));
+    }
+
     static agregar(transaccion) {
         Transaccion.historial.push(transaccion);
+        Transaccion.guardarEnStorage();
     }
 
-    // Método estático para eliminar una transacción específica filtrando por su ID único
     static eliminar(id) {
         Transaccion.historial = Transaccion.historial.filter(t => t.id !== id);
+        Transaccion.guardarEnStorage();
+    }
+
+    // Método estático para actualizar una transacción existente buscando por su ID
+    static actualizar(id, nuevosDatos) {
+        const index = Transaccion.historial.findIndex(t => t.id === Number(id));
+        if (index !== -1) {
+            Transaccion.historial[index].descripcion = nuevosDatos.descripcion;
+            Transaccion.historial[index].monto = parseFloat(nuevosDatos.monto);
+            Transaccion.historial[index].tipo = nuevosDatos.tipo;
+            Transaccion.historial[index].categoria = nuevosDatos.categoria;
+            Transaccion.guardarEnStorage();
+        }
     }
 }
